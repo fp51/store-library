@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as Eq from 'fp-ts/lib/Eq';
 import { identity } from 'fp-ts/lib/function';
 
-import * as Store from '@iadvize-oss/store';
+import * as Store from '@fp51/store';
 
 export type Options<State> = Partial<{
   /**

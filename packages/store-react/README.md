@@ -1,23 +1,23 @@
-@iadvize/store-react
+@fp51/store-react
 ====================
 
-This the React binding library for `@iadvize/store`, a lightweight Javascript
+This the React binding library for `@fp51/store`, a lightweight Javascript
 store library.
 
-[📖 Documentation](https://iadvize.github.io/store-library/packages/store-react/)
+[📖 Documentation](https://fp51.github.io/store-library/packages/store-react/)
 
 # Installation 
 
 ```
-npm add react @iadvize-oss/store @iadvize-oss/store-react
+npm add react @fp51/store @fp51/store-react
 ```
 
-`react` and `@iadvize-oss/store` are peer dependencies
+`react` and `@fp51/store` are peer dependencies
 
 # Usage
 
-It's easy to use `@iadvize/store` with React thanks to hooks exposed by
-`@iadvize/store-react`.
+It's easy to use `@fp51/store` with React thanks to hooks exposed by
+`@fp51/store-react`.
 
 ## `useState`
 

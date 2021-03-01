@@ -2,7 +2,7 @@ import { renderHook, act } from '@testing-library/react-hooks';
 
 import { identity } from 'fp-ts/lib/function';
 
-import * as Store from '@iadvize-oss/store';
+import * as Store from '@fp51/store';
 
 import {
   useState,

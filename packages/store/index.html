@@ -3,10 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@iadvize-oss/store - v1.0.0</title>
-	<meta name="description" content="Documentation for @iadvize-oss/store - v1.0.0">
+	<title>@fp51/store - v0.0.0</title>
+	<meta name="description" content="Documentation for @fp51/store - v0.0.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -22,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@iadvize-oss/store - v1.0.0</a>
+					<a href="index.html" class="title">@fp51/store - v0.0.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,12 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>@iadvize-oss/store - v1.0.0</h1>
+			<h1>@fp51/store - v0.0.0</h1>
 		</div>
 	</div>
 </header>
@@ -64,75 +58,77 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#iadvizestore" id="iadvizestore" style="color: inherit; text-decoration: none;">
-					<h1>@iadvize/store</h1>
+				<a href="#fp51store" id="fp51store" style="color: inherit; text-decoration: none;">
+					<h1>@fp51/store</h1>
 				</a>
 				<p>A lightweight Javascript store library.</p>
-				<p><a href="https://iadvize.github.io/store-library/packages/store/">📖 Documentation</a></p>
+				<p><a href="https://fp51.github.io/store-library/packages/store/">📖 Documentation</a></p>
 				<a href="#basic-example" id="basic-example" style="color: inherit; text-decoration: none;">
 					<h1>Basic example</h1>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">type</span> Todo = {
-  <span class="hljs-attr">done</span>: <span class="hljs-built_in">boolean</span>;
-  label: <span class="hljs-built_in">string</span>;
-};
+				<pre><code class="language-typescript"><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">Todo</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">done</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #001080">label</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">};</span>
 
-<span class="hljs-keyword">type</span> State = Todo[];
+<span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">State</span><span style="color: #000000"> = </span><span style="color: #267F99">Todo</span><span style="color: #000000">[];</span>
 
-<span class="hljs-comment">// initialise the store with an initial state</span>
-<span class="hljs-keyword">const</span> todoStore = Store.create&lt;State&gt;(<span class="hljs-function">() =&gt;</span> [
-  { <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&quot;writtings some doc&quot;</span> },
-  { <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&quot;napping&quot;</span> },
-])();
+<span style="color: #008000">// initialise the store with an initial state</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">todoStore</span><span style="color: #000000"> = </span><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">&lt;</span><span style="color: #267F99">State</span><span style="color: #000000">&gt;(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> [</span>
+<span style="color: #000000">  { </span><span style="color: #001080">done:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">label:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;writtings some doc&quot;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">  { </span><span style="color: #001080">done:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">label:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;napping&quot;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">])();</span>
 
-<span class="hljs-comment">// create a reducer function adding a new Todo</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendNewTodoOnState</span>(<span class="hljs-params">newTodo: <span class="hljs-built_in">string</span></span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendNewTodoReducer</span>(<span class="hljs-params">state: State</span>) </span>{
-    <span class="hljs-keyword">return</span> [
-      ...state,
-      { <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">label</span>: newTodo }
-    ];
-  }
-}
+<span style="color: #008000">// create a reducer function adding a new Todo</span>
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">appendNewTodoOnState</span><span style="color: #000000">(</span><span style="color: #001080">newTodo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">appendNewTodoReducer</span><span style="color: #000000">(</span><span style="color: #001080">state</span><span style="color: #000000">: </span><span style="color: #267F99">State</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      ...</span><span style="color: #001080">state</span><span style="color: #000000">,</span>
+<span style="color: #000000">      { </span><span style="color: #001080">done:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">label:</span><span style="color: #000000"> </span><span style="color: #001080">newTodo</span><span style="color: #000000"> }</span>
+<span style="color: #000000">    ];</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
 
-<span class="hljs-comment">// associating the reducer function and a store instance</span>
-<span class="hljs-keyword">const</span> appendNewTodo = Store.liftAndApply(appendNewTodoOnState, todoStore);
+<span style="color: #008000">// associating the reducer function and a store instance</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">appendNewTodo</span><span style="color: #000000"> = </span><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #795E26">liftAndApply</span><span style="color: #000000">(</span><span style="color: #001080">appendNewTodoOnState</span><span style="color: #000000">, </span><span style="color: #001080">todoStore</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// create a reducer function removing all todos, ie. returning and empty state</span>
-<span class="hljs-keyword">const</span> emptyTodosReducer = <span class="hljs-function">() =&gt;</span> [];
+<span style="color: #008000">// create a reducer function removing all todos, ie. returning and empty state</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">emptyTodosReducer</span><span style="color: #000000"> = () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> [];</span>
 
-<span class="hljs-comment">// associating the reducer function and a store instance</span>
-<span class="hljs-keyword">const</span> emptyTodos = todoStore.apply(emptyTodosReducer);
+<span style="color: #008000">// associating the reducer function and a store instance</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">emptyTodos</span><span style="color: #000000"> = </span><span style="color: #001080">todoStore</span><span style="color: #000000">.</span><span style="color: #795E26">apply</span><span style="color: #000000">(</span><span style="color: #001080">emptyTodosReducer</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// registering a listener</span>
-<span class="hljs-keyword">const</span> subscribeToTodoStore = todoStore.subscribe(<span class="hljs-function"><span class="hljs-params">newState</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;newState&quot;</span>, newState);
-});
+<span style="color: #008000">// registering a listener</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">subscribeToTodoStore</span><span style="color: #000000"> = </span><span style="color: #001080">todoStore</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">(</span><span style="color: #001080">newState</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;newState&quot;</span><span style="color: #000000">, </span><span style="color: #001080">newState</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
 
-<span class="hljs-comment">// applying the listener</span>
-<span class="hljs-keyword">const</span> unsubscribeFromTodoStore = subscribeToTodoStore();
+<span style="color: #008000">// applying the listener</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">unsubscribeFromTodoStore</span><span style="color: #000000"> = </span><span style="color: #795E26">subscribeToTodoStore</span><span style="color: #000000">();</span>
 
-<span class="hljs-comment">// triggering a change</span>
-appendNewTodo(<span class="hljs-string">&quot;have drink with my colleagues&quot;</span>)();
+<span style="color: #008000">// triggering a change</span>
+<span style="color: #795E26">appendNewTodo</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;have drink with my colleagues&quot;</span><span style="color: #000000">)();</span>
 
-<span class="hljs-comment">// will log:</span>
-<span class="hljs-comment">// newState, [{done: false, label: &#x27;writtings some doc&#x27;},{done: true, label: &#x27;napping&#x27;},{done: false, label: &#x27;have drink with my colleagues&#x27;}]</span>
+<span style="color: #008000">// will log:</span>
+<span style="color: #008000">// newState, [{done: false, label: &#039;writtings some doc&#039;},{done: true, label: &#039;napping&#039;},{done: false, label: &#039;have drink with my colleagues&#039;}]</span>
 
-<span class="hljs-comment">// emptying the store </span>
-emptyTodos();
+<span style="color: #008000">// emptying the store </span>
+<span style="color: #795E26">emptyTodos</span><span style="color: #000000">();</span>
 
-<span class="hljs-comment">// will log:</span>
-<span class="hljs-comment">// newState, []</span>
+<span style="color: #008000">// will log:</span>
+<span style="color: #008000">// newState, []</span>
 
-<span class="hljs-comment">// removing the listener we don&#x27;t need anymore</span>
-unsubscribeFromTodoStore();</code></pre>
+<span style="color: #008000">// removing the listener we don&#039;t need anymore</span>
+<span style="color: #795E26">unsubscribeFromTodoStore</span><span style="color: #000000">();</span>
+</code></pre>
 				<a href="#reference" id="reference" style="color: inherit; text-decoration: none;">
 					<h1>Reference</h1>
 				</a>
 				<a href="#storecreate---store-creation" id="storecreate---store-creation" style="color: inherit; text-decoration: none;">
 					<h2><code>Store.create</code> - Store creation</h2>
 				</a>
-				<pre><code>Store.create&lt;State&gt;(initialState: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> State): <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Store&lt;State&gt;</code></pre>
+				<pre><code><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">&lt;</span><span style="color: #267F99">State</span><span style="color: #000000">&gt;(</span><span style="color: #001080">initialState</span><span style="color: #000000">: () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">State</span><span style="color: #000000">): () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Store</span><span style="color: #000000">&lt;</span><span style="color: #001080">State</span><span style="color: #000000">&gt;</span>
+</code></pre>
 				<p>You create a store with <code>Store.create</code> by passing it a function that will return
 					your initial state. This will return you a function to call to create the
 				corresponding store as many times you need.</p>
@@ -144,28 +140,32 @@ unsubscribeFromTodoStore();</code></pre>
 				<p><code>() =&gt; Store&lt;State&gt;</code> - Effect to call to receive a Store initialized with the
 				initial state</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> createTodoStore = Store.create&lt;State&gt;(<span class="hljs-function">() =&gt;</span> [
-  { <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&quot;writtings some doc&quot;</span> },
-  { <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&quot;napping&quot;</span> }
-]);
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">createTodoStore</span><span style="color: #000000"> = </span><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">&lt;</span><span style="color: #267F99">State</span><span style="color: #000000">&gt;(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> [</span>
+<span style="color: #000000">  { </span><span style="color: #001080">done:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">label:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;writtings some doc&quot;</span><span style="color: #000000"> },</span>
+<span style="color: #000000">  { </span><span style="color: #001080">done:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">label:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;napping&quot;</span><span style="color: #000000"> }</span>
+<span style="color: #000000">]);</span>
 
-<span class="hljs-keyword">const</span> todoStore = createTodoStore();</code></pre>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">todoStore</span><span style="color: #000000"> = </span><span style="color: #795E26">createTodoStore</span><span style="color: #000000">();</span>
+</code></pre>
 				<a href="#ltstoregtread---reading-the-state" id="ltstoregtread---reading-the-state" style="color: inherit; text-decoration: none;">
 					<h2><code>&lt;store&gt;.read</code> - Reading the state</h2>
 				</a>
 				<p>Call <code>&lt;store&gt;.read</code> to read the state.</p>
-				<pre><code><span class="hljs-symbol">&lt;store&gt;</span>.<span class="hljs-keyword">read</span>(): State</code></pre>
+				<pre><code><span style="color: #000000">&lt;</span><span style="color: #267F99">store</span><span style="color: #000000">&gt;.</span><span style="color: #795E26">read</span><span style="color: #000000">(): </span><span style="color: #001080">State</span>
+</code></pre>
 				<p><strong>Returns</strong></p>
 				<p><code>State</code> - Returns the state. </p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> state = store.read();
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;state&#x27;</span>, state);</code></pre>
+				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">state</span><span style="color: #000000"> = </span><span style="color: #001080">store</span><span style="color: #000000">.</span><span style="color: #795E26">read</span><span style="color: #000000">();</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;state&#039;</span><span style="color: #000000">, </span><span style="color: #001080">state</span><span style="color: #000000">);</span>
+</code></pre>
 				<a href="#ltstoregtsubscribe---subscribing-to-state-change" id="ltstoregtsubscribe---subscribing-to-state-change" style="color: inherit; text-decoration: none;">
 					<h2><code>&lt;store&gt;.subscribe</code> - Subscribing to state change</h2>
 				</a>
 				<p>You subscribe to state changes with <code>&lt;store&gt;.subscribe</code>. It accepts a listener
 				that receives the new state as a parameter.</p>
-				<pre><code>&lt;store&gt;.subscribe(listener: Listener&lt;State&gt;): <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Unsubscribe</code></pre>
+				<pre><code><span style="color: #000000">&lt;</span><span style="color: #267F99">store</span><span style="color: #000000">&gt;.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">(</span><span style="color: #001080">listener</span><span style="color: #000000">: </span><span style="color: #001080">Listener</span><span style="color: #000000">&lt;</span><span style="color: #001080">State</span><span style="color: #000000">&gt;): () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Unsubscribe</span>
+</code></pre>
 				<p><strong>Params</strong></p>
 				<ul>
 					<li><code>listener: Listener&lt;State&gt;</code> - Where
@@ -179,23 +179,25 @@ unsubscribeFromTodoStore();</code></pre>
 					to call to unsubscribe this specific applied subscription where
 				<code>type Unsubscribe: () =&gt; void</code>.</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// prepare the subscription to change</span>
-<span class="hljs-comment">// subscribeToTodoStore :: () =&gt; Unsubscribe</span>
-<span class="hljs-keyword">const</span> subscribeToTodoStore = todoStore.subscribe(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span>
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;new state&#x27;</span>, state);
-);
+				<pre><code class="language-typescript"><span style="color: #008000">// prepare the subscription to change</span>
+<span style="color: #008000">// subscribeToTodoStore :: () =&gt; Unsubscribe</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">subscribeToTodoStore</span><span style="color: #000000"> = </span><span style="color: #001080">todoStore</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">((</span><span style="color: #001080">state</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;new state&#039;</span><span style="color: #000000">, </span><span style="color: #001080">state</span><span style="color: #000000">);</span>
+<span style="color: #000000">);</span>
 
-<span class="hljs-comment">// starting the listener</span>
-<span class="hljs-comment">// unsubscribeFromTodoStore :: () =&gt; void </span>
-<span class="hljs-keyword">const</span> unsubscribeFromTodoStore = subscribeToTodoStore();
+<span style="color: #008000">// starting the listener</span>
+<span style="color: #008000">// unsubscribeFromTodoStore :: () =&gt; void </span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">unsubscribeFromTodoStore</span><span style="color: #000000"> = </span><span style="color: #795E26">subscribeToTodoStore</span><span style="color: #000000">();</span>
 
-<span class="hljs-comment">// unsubscribe when you are done</span>
-unsubscribeFromTodoStore();</code></pre>
+<span style="color: #008000">// unsubscribe when you are done</span>
+<span style="color: #795E26">unsubscribeFromTodoStore</span><span style="color: #000000">();</span>
+</code></pre>
 				<a href="#ltstoregtapply---updating-state" id="ltstoregtapply---updating-state" style="color: inherit; text-decoration: none;">
 					<h2><code>&lt;store&gt;.apply</code> - Updating state</h2>
 				</a>
 				<p>Call <code>&lt;store&gt;.apply</code> with a reducer to update the store.</p>
-				<pre><code>&lt;store&gt;.apply(reducer: <span class="hljs-function"><span class="hljs-params">(state: State)</span> =&gt;</span> State): <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">void</span></code></pre>
+				<pre><code><span style="color: #000000">&lt;</span><span style="color: #267F99">store</span><span style="color: #000000">&gt;.</span><span style="color: #795E26">apply</span><span style="color: #000000">(</span><span style="color: #001080">reducer</span><span style="color: #000000">: (</span><span style="color: #001080">state</span><span style="color: #000000">: </span><span style="color: #267F99">State</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">State</span><span style="color: #000000">): () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #0000FF">void</span>
+</code></pre>
 				<p><strong>Params</strong></p>
 				<ul>
 					<li><code>reducer: (state: State) =&gt; State</code> - A function that receive a state and
@@ -204,53 +206,57 @@ unsubscribeFromTodoStore();</code></pre>
 				<p><strong>Returns</strong></p>
 				<p><code>() =&gt; void</code> - An effect to call to apply the update synchronously.</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// preparing an update function</span>
-<span class="hljs-comment">// appendNewTodoOnState :: (newTodo: string) =&gt; (state: State) =&gt; State</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendNewTodoOnState</span>(<span class="hljs-params">newTodo: <span class="hljs-built_in">string</span></span>) </span>{
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendNewTodoReducer</span>(<span class="hljs-params">state: State</span>) </span>{
-    <span class="hljs-keyword">return</span> [
-      ...state,
-      { <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">label</span>: newTodo }
-    ]
-  }
-}
+				<pre><code class="language-typescript"><span style="color: #008000">// preparing an update function</span>
+<span style="color: #008000">// appendNewTodoOnState :: (newTodo: string) =&gt; (state: State) =&gt; State</span>
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">appendNewTodoOnState</span><span style="color: #000000">(</span><span style="color: #001080">newTodo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">appendNewTodoReducer</span><span style="color: #000000">(</span><span style="color: #001080">state</span><span style="color: #000000">: </span><span style="color: #267F99">State</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      ...</span><span style="color: #001080">state</span><span style="color: #000000">,</span>
+<span style="color: #000000">      { </span><span style="color: #001080">done:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">label:</span><span style="color: #000000"> </span><span style="color: #001080">newTodo</span><span style="color: #000000"> }</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
 
-<span class="hljs-comment">// Preparing the update on the store</span>
-<span class="hljs-keyword">const</span> appendNewTodo = todoStore.apply(
-  appendNewTodoOnState(<span class="hljs-string">&#x27;have drink with my colleagues&#x27;</span>)
-);
+<span style="color: #008000">// Preparing the update on the store</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">appendNewTodo</span><span style="color: #000000"> = </span><span style="color: #001080">todoStore</span><span style="color: #000000">.</span><span style="color: #795E26">apply</span><span style="color: #000000">(</span>
+<span style="color: #000000">  </span><span style="color: #795E26">appendNewTodoOnState</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;have drink with my colleagues&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Applying the transformation</span>
-appendNewTodo();</code></pre>
+<span style="color: #008000">// Applying the transformation</span>
+<span style="color: #795E26">appendNewTodo</span><span style="color: #000000">();</span>
+</code></pre>
 				<p>Here we apply a reducer function directly on the store instance and trigger the
 				change with the <code>appendNewTodo</code> function.</p>
 				<p>Of course we would need <code>appendNewTodo</code> to accept any todo rather than a preset
 				one:</p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// Preparing the update on the store</span>
-<span class="hljs-comment">// appendNewTodo :: (newTodo: string) =&gt; () =&gt; void</span>
-<span class="hljs-keyword">const</span> appendNewTodo = <span class="hljs-function">(<span class="hljs-params">newTodo: <span class="hljs-built_in">string</span></span>) =&gt;</span> todoStore.apply(
-  appendNewTodoOnState(newTodo)
-);
+				<pre><code class="language-typescript"><span style="color: #008000">// Preparing the update on the store</span>
+<span style="color: #008000">// appendNewTodo :: (newTodo: string) =&gt; () =&gt; void</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">appendNewTodo</span><span style="color: #000000"> = (</span><span style="color: #001080">newTodo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">todoStore</span><span style="color: #000000">.</span><span style="color: #795E26">apply</span><span style="color: #000000">(</span>
+<span style="color: #000000">  </span><span style="color: #795E26">appendNewTodoOnState</span><span style="color: #000000">(</span><span style="color: #001080">newTodo</span><span style="color: #000000">)</span>
+<span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Applying the transformation</span>
-appendNewTodo(<span class="hljs-string">&#x27;have drink with my colleagues&#x27;</span>)();</code></pre>
+<span style="color: #008000">// Applying the transformation</span>
+<span style="color: #795E26">appendNewTodo</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;have drink with my colleagues&#039;</span><span style="color: #000000">)();</span>
+</code></pre>
 				<p>Because this operation is so common, we can use <code>Store.liftAndApply</code> which will
 				handle the parameter passing for us and cut on the boilerplate:</p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// appendNewTodo :: (newTodo: string) =&gt; () =&gt; void</span>
-<span class="hljs-keyword">const</span> appendNewTodo = Store.liftAndApply(appendNewTodoOnState, todoStore);
+				<pre><code class="language-typescript"><span style="color: #008000">// appendNewTodo :: (newTodo: string) =&gt; () =&gt; void</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">appendNewTodo</span><span style="color: #000000"> = </span><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #795E26">liftAndApply</span><span style="color: #000000">(</span><span style="color: #001080">appendNewTodoOnState</span><span style="color: #000000">, </span><span style="color: #001080">todoStore</span><span style="color: #000000">);</span>
 
-appendNewTodo(<span class="hljs-string">&#x27;have drink with my colleagues&#x27;</span>)();</code></pre>
+<span style="color: #795E26">appendNewTodo</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;have drink with my colleagues&#039;</span><span style="color: #000000">)();</span>
+</code></pre>
 				<a href="#storeliftandapply---create-a-parametrized-update" id="storeliftandapply---create-a-parametrized-update" style="color: inherit; text-decoration: none;">
 					<h2><code>Store.liftAndApply</code> - create a parametrized update</h2>
 				</a>
 				<p>Call <code>Store.liftAndApply</code> to easily create an update effect function. Pass it
 					a function that given any parameters returns a reducer <code>State =&gt; State</code> and the
 				store.</p>
-				<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Store</span>.</span></span>liftAndApply&lt;
-  State,
-  <span class="hljs-comment">// eslint-disable-next-line @typescript-eslint/no-explicit-any</span>
-  Fn extends<span class="hljs-function"> (...<span class="hljs-params">args</span>: <span class="hljs-params">any</span>[]) =&gt;</span> Reducer&lt;State&gt;
-&gt;(fn: Fn, store: Store&lt;State&gt;):<span class="hljs-function"> (...<span class="hljs-params">args</span>: P<span class="hljs-params">arameters</span>&lt;F<span class="hljs-params">n</span>&gt;) =&gt;</span><span class="hljs-function"> <span class="hljs-params">()</span> =&gt;</span> void</code></pre>
+				<pre><code><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #001080">liftAndApply</span><span style="color: #000000">&lt;</span>
+<span style="color: #000000">  </span><span style="color: #001080">State</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #008000">// eslint-disable-next-line @typescript-eslint/no-explicit-any</span>
+<span style="color: #000000">  </span><span style="color: #001080">Fn</span><span style="color: #000000"> </span><span style="color: #795E26">extends</span><span style="color: #000000"> (...</span><span style="color: #001080">args</span><span style="color: #000000">: </span><span style="color: #001080">any</span><span style="color: #000000">[]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">Reducer</span><span style="color: #000000">&lt;</span><span style="color: #001080">State</span><span style="color: #000000">&gt;</span>
+<span style="color: #000000">&gt;(</span><span style="color: #001080">fn</span><span style="color: #000000">: </span><span style="color: #267F99">Fn</span><span style="color: #000000">, </span><span style="color: #001080">store</span><span style="color: #000000">: </span><span style="color: #267F99">Store</span><span style="color: #000000">&lt;</span><span style="color: #267F99">State</span><span style="color: #000000">&gt;): (...</span><span style="color: #001080">args</span><span style="color: #000000">: </span><span style="color: #267F99">Parameters</span><span style="color: #000000">&lt;</span><span style="color: #267F99">Fn</span><span style="color: #000000">&gt;) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #0000FF">void</span>
+</code></pre>
 				<p><strong>Params</strong></p>
 				<ul>
 					<li><p><code>fn: Fn</code> - Where <code>Fn extends (...args: any[]) =&gt; Reducer&lt;State&gt;</code> a function
@@ -263,35 +269,51 @@ appendNewTodo(<span class="hljs-string">&#x27;have drink with my colleagues&#x27
 				<p>An function that accept <code>fn</code> arguments and return an effect to call to apply the
 				update synchronously.</p>
 				<p><strong>Example</strong></p>
-				<pre><code class="language-typescript"><span class="hljs-comment">// appendNewTodoOnState :: (newTodo: string, done: boolean) =&gt; (state: State) =&gt; State</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendNewTodoOnState</span>(<span class="hljs-params">newTodo: <span class="hljs-built_in">string</span>, done: <span class="hljs-built_in">boolean</span></span>) </span>{
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendNewTodoReducer</span>(<span class="hljs-params">state: State</span>) </span>{
-    <span class="hljs-keyword">return</span> [
-      ...state,
-      { done, <span class="hljs-attr">label</span>: newTodo }
-    ]
-  }
-}
+				<pre><code class="language-typescript"><span style="color: #008000">// appendNewTodoOnState :: (newTodo: string, done: boolean) =&gt; (state: State) =&gt; State</span>
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">appendNewTodoOnState</span><span style="color: #000000">(</span><span style="color: #001080">newTodo</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">done</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">appendNewTodoReducer</span><span style="color: #000000">(</span><span style="color: #001080">state</span><span style="color: #000000">: </span><span style="color: #267F99">State</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      ...</span><span style="color: #001080">state</span><span style="color: #000000">,</span>
+<span style="color: #000000">      { </span><span style="color: #001080">done</span><span style="color: #000000">, </span><span style="color: #001080">label:</span><span style="color: #000000"> </span><span style="color: #001080">newTodo</span><span style="color: #000000"> }</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
 
-<span class="hljs-comment">// appendNewTodo :: (newTodo: string, done: boolean) =&gt; () =&gt; void</span>
-<span class="hljs-keyword">const</span> appendNewTodo = Store.liftAndApply(appendNewTodo, todoStore);
+<span style="color: #008000">// appendNewTodo :: (newTodo: string, done: boolean) =&gt; () =&gt; void</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">appendNewTodo</span><span style="color: #000000"> = </span><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #795E26">liftAndApply</span><span style="color: #000000">(</span><span style="color: #001080">appendNewTodo</span><span style="color: #000000">, </span><span style="color: #001080">todoStore</span><span style="color: #000000">);</span>
 
-appendNewTodo(<span class="hljs-string">&#x27;Groceries already done&#x27;</span>, <span class="hljs-literal">true</span>);</code></pre>
+<span style="color: #795E26">appendNewTodo</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Groceries already done&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">);</span>
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_index_.html">&quot;src/index&quot;</a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#listener" class="tsd-kind-icon">Listener</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#reducer" class="tsd-kind-icon">Reducer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#store" class="tsd-kind-icon">Store</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#unsubscribe" class="tsd-kind-icon">Unsubscribe</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#create" class="tsd-kind-icon">create</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#liftandapply" class="tsd-kind-icon">lift<wbr>And<wbr>Apply</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -301,11 +323,6 @@ appendNewTodo(<span class="hljs-string">&#x27;Groceries already done&#x27;</span
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
 		</div>
 	</div>
 </footer>

@@ -1,9 +1,9 @@
-@iadvize/store
+@fp51/store
 ==============
 
 A lightweight Javascript store library.
 
-[📖 Documentation](https://iadvize.github.io/store-library/packages/store/)
+[📖 Documentation](https://fp51.github.io/store-library/packages/store/)
 
 # Basic example
 

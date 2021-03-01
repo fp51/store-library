@@ -1,6 +1,6 @@
 {
   "name": "@fp51/store-devtools",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Devtools for @fp51/store",
   "main": "dist/index.js",
   "module": "esm/index.js",

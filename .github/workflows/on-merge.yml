@@ -64,6 +64,8 @@ jobs:
 
     - name: Generate new docs
       id: generation
+      env:
+        PACKAGE: ${{ steps.name.outputs.package }}
       run: |
         cd $PACKAGE
         npm run docs

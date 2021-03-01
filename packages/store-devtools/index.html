@@ -3,10 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@iadvize-oss/store-devtools - v1.0.0</title>
-	<meta name="description" content="Documentation for @iadvize-oss/store-devtools - v1.0.0">
+	<title>@fp51/store-devtools - v0.0.0</title>
+	<meta name="description" content="Documentation for @fp51/store-devtools - v0.0.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -22,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@iadvize-oss/store-devtools - v1.0.0</a>
+					<a href="index.html" class="title">@fp51/store-devtools - v0.0.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,12 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>@iadvize-oss/store-devtools - v1.0.0</h1>
+			<h1>@fp51/store-devtools - v0.0.0</h1>
 		</div>
 	</div>
 </header>
@@ -64,50 +58,53 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#iadvizestore-devtools" id="iadvizestore-devtools" style="color: inherit; text-decoration: none;">
-					<h1>@iadvize/store-devtools</h1>
+				<a href="#fp51store-devtools" id="fp51store-devtools" style="color: inherit; text-decoration: none;">
+					<h1>@fp51/store-devtools</h1>
 				</a>
-				<p>Devtools for <code>@iadvize/store</code>, a lightweight Javascript store library.</p>
-				<p>Use <code>@iadvize/store-devtools</code> to debug your store with <a href="https://github.com/zalmoxisus/redux-devtools-extension">ReduxDevtools
+				<p>Devtools for <code>@fp51/store</code>, a lightweight Javascript store library.</p>
+				<p>Use <code>@fp51/store-devtools</code> to debug your store with <a href="https://github.com/zalmoxisus/redux-devtools-extension">ReduxDevtools
 				extension</a>.</p>
-				<p><a href="https://iadvize.github.io/store-library/packages/store-devtools/">📖 Documentation</a></p>
+				<p><a href="https://fp51.github.io/store-library/packages/store-devtools/">📖 Documentation</a></p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h1>Usage</h1>
 				</a>
-				<pre><code>npm install <span class="hljs-title">@iadvize-oss</span>/<span class="hljs-keyword">store</span> <span class="hljs-title">@iadvize-oss</span>/<span class="hljs-keyword">store</span>-devtools</code></pre>
-				<p><code>@iadvize-oss/store</code> is a peer-dependency</p>
+				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> @</span><span style="color: #001080">fp51</span><span style="color: #000000">/</span><span style="color: #001080">store</span><span style="color: #000000"> @</span><span style="color: #001080">fp51</span><span style="color: #000000">/</span><span style="color: #001080">store</span><span style="color: #000000">-</span><span style="color: #001080">devtools</span>
+</code></pre>
+				<p><code>@fp51/store</code> is a peer-dependency</p>
 				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 					<h1>Example</h1>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@iadvize/store&#x27;</span>;
-<span class="hljs-keyword">import</span> { withDevtools } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@iadvize/store-devtools&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">Store</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@fp51/store&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">withDevtools</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@fp51/store-devtools&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> store = withDevtools({
-  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;my store&#x27;</span>,
-})(Store.create(<span class="hljs-function">() =&gt;</span> <span class="hljs-number">2</span>)());</code></pre>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">store</span><span style="color: #000000"> = </span><span style="color: #795E26">withDevtools</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;my store&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">})(</span><span style="color: #001080">Store</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000">)());</span>
+</code></pre>
 				<p>Instead of classic <code>Redux</code> action type, it will try to use the reducer function
 				name to log the change.</p>
-				<pre><code class="language-typescript">store.apply(
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiplyByTwo</span>(<span class="hljs-params">state: <span class="hljs-built_in">number</span></span>) </span>{
-    <span class="hljs-keyword">return</span> state * <span class="hljs-number">2</span>;
-  }
-)();</code></pre>
+				<pre><code class="language-typescript"><span style="color: #001080">store</span><span style="color: #000000">.</span><span style="color: #795E26">apply</span><span style="color: #000000">(</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">multiplyByTwo</span><span style="color: #000000">(</span><span style="color: #001080">state</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">state</span><span style="color: #000000"> * </span><span style="color: #098658">2</span><span style="color: #000000">;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">)();</span>
+</code></pre>
 				<p>Devtools will use <code>multiplyByTwo</code> as change type here.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_index_.html">&quot;src/index&quot;</a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-function">
+						<a href="modules.html#withdevtools" class="tsd-kind-icon">with<wbr>Devtools</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -117,10 +114,6 @@
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
 		</div>
 	</div>
 </footer>

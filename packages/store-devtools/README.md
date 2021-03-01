@@ -1,26 +1,26 @@
-@iadvize/store-devtools
+@fp51/store-devtools
 =======================
 
-Devtools for `@iadvize/store`, a lightweight Javascript store library.
+Devtools for `@fp51/store`, a lightweight Javascript store library.
 
-Use `@iadvize/store-devtools` to debug your store with [ReduxDevtools
+Use `@fp51/store-devtools` to debug your store with [ReduxDevtools
 extension](https://github.com/zalmoxisus/redux-devtools-extension).
 
-[📖 Documentation](https://iadvize.github.io/store-library/packages/store-devtools/)
+[📖 Documentation](https://fp51.github.io/store-library/packages/store-devtools/)
 
 # Usage
 
 ```
-npm install @iadvize-oss/store @iadvize-oss/store-devtools
+npm install @fp51/store @fp51/store-devtools
 ```
 
-`@iadvize-oss/store` is a peer-dependency
+`@fp51/store` is a peer-dependency
 
 # Example
 
 ```typescript
-import * as Store from '@iadvize/store';
-import { withDevtools } from '@iadvize/store-devtools';
+import * as Store from '@fp51/store';
+import { withDevtools } from '@fp51/store-devtools';
 
 const store = withDevtools({
   name: 'my store',

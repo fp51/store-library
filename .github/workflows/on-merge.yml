@@ -65,6 +65,7 @@ jobs:
     - name: Generate new docs
       id: generation
       run: |
+        cd $PACKAGE
         npm run docs
 
         if [ -d "docs" ];  then

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import * as Store from '@iadvize-oss/store';
+import * as Store from '@fp51/store';
 
 type Options = Partial<{
   name: string;

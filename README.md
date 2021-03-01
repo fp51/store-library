@@ -1,7 +1,7 @@
-@iadvize/store
+@fp51/store
 ==============
 
-This is a monorepo for the experimental `@iadvize-oss/store`, a lightweight
+This is a monorepo for the experimental `@fp51/store`, a lightweight
 Javascript store library and its React bindings and devtools helper.
 
 # Why
@@ -50,6 +50,6 @@ Redux-devtools-compatible debugger.
 
 # Packages 
 
-- [`@iadvize-oss/store`](./packages/store). The store.
-- [`@iadvize-oss/store-react`](./packages/store-react). React bindings.
-- [`@iadvize-oss/store-devtools`](./packages/store-devtools). Devtools
+- [`@fp51/store`](./packages/store). The store.
+- [`@fp51/store-react`](./packages/store-react). React bindings.
+- [`@fp51/store-devtools`](./packages/store-devtools). Devtools

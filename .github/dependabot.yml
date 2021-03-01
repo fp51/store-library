@@ -1,0 +1,29 @@
+version: 2
+
+updates:
+  - package-ecosystem: "npm"
+    directory: "/packages/store"
+    schedule:
+      interval: "daily"
+      time: "02:00"
+    labels:
+      - "Action: no bump"
+      - "Action: keep-rebased-then-merge"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/store-react"
+    schedule:
+      interval: "daily"
+      time: "02:00"
+    labels:
+      - "Action: no bump"
+      - "Action: keep-rebased-then-merge"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/store-devtools"
+    schedule:
+      interval: "daily"
+      time: "02:00"
+    labels:
+      - "Action: no bump"
+      - "Action: keep-rebased-then-merge"

@@ -9,7 +9,7 @@ on:
 jobs:
   publish-canary:
     name: 'publish canary'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     if: contains(join(github.event.pull_request.labels.*.name), 'packages/')
 
@@ -70,7 +70,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         registry-url: https://registry.npmjs.org/
-        node-verion: '12.x'
+        node-version: '14'
 
     - name: Cache npm cache
       uses: actions/cache@v2
@@ -92,7 +92,7 @@ jobs:
 
     - name: Bumb version
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.TOKEN_NPM }}
         VERSION: ${{ steps.compute-version.outputs.version }}
         PACKAGE: ${{ steps.name.outputs.package }}
       run: |

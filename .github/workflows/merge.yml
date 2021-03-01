@@ -10,13 +10,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     name: 'Merge pull requests'
 
     steps:
     - name: Find pull request
-      uses: iadvize/actions/find-pull-request@2.0.1
+      uses: fp51/actions/find-pull-request@v1
       # only useful for check_suite, we have a pull_request object on pull_request and pull_request_review
       if: github.event_name == 'check_suite'
       id: pr
@@ -25,11 +25,11 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: 'Merge the current pull request if possible'
-      uses: iadvize/actions/merge@2.0.1
+      uses: fp51/actions/merge@v1
       if: >
         github.event_name != 'check_suite' || (
           github.event_name == 'check_suite'
-          && github.event.check_suite.head_branch != 'master'
+          && github.event.check_suite.head_branch != 'main'
           && github.event.check_suite.conclusion == 'success'
           && steps.pr.outputs.pullExists == 'true'
         )

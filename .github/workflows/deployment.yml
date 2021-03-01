@@ -5,7 +5,7 @@ on: deployment
 jobs:
   npm:
     name: 'Deploy on npm'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Update deployment status
@@ -42,12 +42,12 @@ jobs:
     - name: Git config
       run: |
         git config user.name "Github actions"
-        git config user.email "github-actions@iadvize.com"
+        git config user.email "github-actions@fp51.dev"
 
     - uses: actions/setup-node@v1
       with:
         registry-url: https://registry.npmjs.org/
-        node-verion: '12.x'
+        node-version: '14'
 
     - name: Install
       env:
@@ -68,7 +68,7 @@ jobs:
     - name: Publish npm
       id: publish
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.TOKEN_NPM }}
         VERSION: ${{ github.event.deployment.payload.version }}
         TAG: ${{ github.event.deployment.payload.npmTag }}
         DIRECTORY: ${{ steps.status.outputs.directory }}

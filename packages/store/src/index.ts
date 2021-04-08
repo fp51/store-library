@@ -1,6 +1,12 @@
 export type Reducer<State> = (state: State) => State;
 
-export type Listener<State> = (state: State) => void;
+export type Listener<State> = ({
+  oldState,
+  newState,
+}: {
+  oldState: State;
+  newState: State;
+}) => void;
 
 export type Unsubscribe = () => void;
 
@@ -93,13 +99,14 @@ export function create<State>(
 
     function apply(reducer: Reducer<State>) {
       return (): void => {
+        const oldState = state;
         state = reducer(state);
 
         // copying listeners list here to deals with unsubscribe nested in
         // subscription
         const localListeners = listeners.slice();
         localListeners.forEach((listener) => {
-          listener(state);
+          listener({ oldState, newState: state });
         });
       };
     }

@@ -33,7 +33,7 @@
   "devDependencies": {
     "@fp51/eslint-config": "^1.0.0",
     "@fp51/store": "^2.0.0",
-    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-commonjs": "^18.0.0",
     "@types/node": "^14.14.30",
     "eslint": "^7.20.0",
     "rollup": "^2.39.0",

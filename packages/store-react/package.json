@@ -34,7 +34,7 @@
     "@fp51/eslint-config": "^1.0.0",
     "@fp51/eslint-config-jest": "^1.0.0",
     "@fp51/store": "^2.0.0",
-    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@testing-library/react-hooks": "^5.1.0",
     "@types/jest": "^26.0.20",

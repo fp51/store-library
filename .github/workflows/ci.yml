@@ -43,6 +43,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           if (context.eventName !== 'pull_request') {
+            console.log(`::set-output name=onlyOne::false`);
             console.log(`::set-output name=packages::${process.env.PACKAGES_PUSH}`);
             return;
           }
@@ -58,10 +59,12 @@ jobs:
           const packageLabels = labels.filter(name => name.includes('packages/'));
 
           if (packageLabels.length === 1) {
+            console.log(`::set-output name=onlyOne::true`);
             console.log(`::set-output name=packages::${packageLabels[0]}`);
             return;
           }
 
+          console.log(`::set-output name=onlyOne::false`);
           console.log(`::set-output name=packages::${process.env.PACKAGES_PUSH}`);
 
     - name: Install
@@ -72,15 +75,6 @@ jobs:
         for PACKAGE in ${PACKAGES//,/ }; do
           echo $PACKAGE
           (cd $PACKAGE; npm ci)
-        done
-
-    - name: Build
-      env:
-        PACKAGES: ${{ steps.packages.outputs.packages }}
-      run: |
-        for PACKAGE in ${PACKAGES//,/ }; do
-          echo $PACKAGE
-          (cd $PACKAGE; npm run build)
         done
 
     - name: Lint
@@ -100,4 +94,48 @@ jobs:
           echo $PACKAGE
           (cd $PACKAGE; npm test test:js)
         done
+
+    - name: Build
+      env:
+        PACKAGES: ${{ steps.packages.outputs.packages }}
+      run: |
+        for PACKAGE in ${PACKAGES//,/ }; do
+          echo $PACKAGE
+
+          (cd $PACKAGE; npm run build)
+        done
+
+    - name: Create tarball
+      if: steps.packages.outputs.onlyOne == 'true'
+      env:
+        PACKAGE: ${{ steps.packages.outputs.packages }}
+      run: |
+        echo $PACKAGE
+        cd $PACKAGE
+
+        # compute canary versions
+        NOW=$(date +%s%3N)
+
+        CURRENT_VERSION=$(cat package.json | jq -r '.version')
+        NEW_VERSION=$CURRENT_VERSION-canary-$COMMIT-$NOW
+
+        npm version --no-git-tag-version $NEW_VERSION
+
+        # pack
+        PACKAGE=$(npm pack)
+
+        mv $PACKAGE package.tgz
+
+        echo "${{ github.ref }}" > ref
+        echo "${{ github.ref }}-${{ github.sha }}" > npm-tag
+
+    - name: Publish artifact
+      if: steps.packages.outputs.onlyOne == 'true'
+      uses: actions/upload-artifact@v2
+      with:
+        name: package
+        path: |
+          ${{ steps.packages.outputs.packages }}/package.tgz
+          ${{ steps.packages.outputs.packages }}/ref
+          ${{ steps.packages.outputs.packages }}/npm-tag
 

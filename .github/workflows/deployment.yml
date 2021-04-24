@@ -1,24 +1,26 @@
 name: Deployment
 
-on: deployment
+on:
+  deployment
 
 jobs:
-  npm:
-    name: 'Deploy on npm'
+  deploy-package:
+    name: Deploy package
     runs-on: ubuntu-latest
 
     steps:
     - name: Update deployment status
-      id: status
-      uses: actions/github-script@v2
+      uses: actions/github-script@v3
       env:
+        NAME: ${{ github.event.deployment.payload.name }}
+        VERSION: ${{ github.event.deployment.payload.version }}
         DEPLOYMENT_ID: ${{ github.event.deployment.id }}
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.TOKEN_REPO_WRITE }}
         previews: 'ant-man,flash'
         script: |
-          const name = context.payload.deployment.payload.name;
-          const version = context.payload.deployment.payload.version;
+          const name = process.env.NAME;
+          const version = process.env.VERSION;
           const npmUrl = `https://www.npmjs.com/package/${name}/v/${version}`;
 
           const { data: deploymentStatus } = github.repos.createDeploymentStatus({
@@ -26,82 +28,68 @@ jobs:
             repo: context.repo.repo,
             deployment_id: process.env.DEPLOYMENT_ID,
             environment_url: npmUrl,
-            description: `Deployed ${name}@${version} on npm`,
+            description: `Publishing ${name}@${version} on npm`,
             auto_inactive: false,
             state: 'in_progress',
           });
 
-          const directory = context.payload.deployment.payload.directory;
-          console.log(`::set-output name=directory::${directory}`)
-
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: Download artifact
+      uses: actions/github-script@v3.1.0
+      env:
+        ARTIFACT_ID: ${{ github.event.deployment.payload.artifactId }}
       with:
-        ref: ${{ github.event.deployment.payload.ref }}
+        script: |
+          const download = await github.actions.downloadArtifact({
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             artifact_id: process.env.ARTIFACT_ID,
+             archive_format: 'zip',
+          });
 
-    - name: Git config
+          const fs = require('fs');
+          fs.writeFileSync('${{github.workspace}}/package.zip', Buffer.from(download.data));
+
+    - name: Unzip artifact
       run: |
-        git config user.name "Github actions"
-        git config user.email "github-actions@fp51.dev"
+        unzip package.zip
 
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2
       with:
         registry-url: https://registry.npmjs.org/
         node-version: '14'
-
-    - name: Install
-      env:
-        DIRECTORY: ${{ steps.status.outputs.directory }}
-      run: |
-        cd $DIRECTORY
-
-        npm ci
-
-    - name: Build
-      env:
-        DIRECTORY: ${{ steps.status.outputs.directory }}
-      run: |
-        cd $DIRECTORY
-
-        npm run build
 
     - name: Publish npm
       id: publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.TOKEN_NPM }}
-        VERSION: ${{ github.event.deployment.payload.version }}
-        TAG: ${{ github.event.deployment.payload.npmTag }}
-        DIRECTORY: ${{ steps.status.outputs.directory }}
+        NPM_TAG: ${{ github.event.deployment.payload.npmTag }}
       run: |
-        cd $DIRECTORY
-
-        npm version $VERSION --allow-same-version --no-git-tag-version
-        npm publish --access public --tag $TAG
+        npm publish package.tgz --access public --tag $NPM_TAG
 
         echo "::set-output name=state::done"
 
     - name: Update deployment status
-      if: always()
-      uses: actions/github-script@v2
+      uses: actions/github-script@v3
       env:
+        NAME: ${{ github.event.deployment.payload.name }}
+        VERSION: ${{ github.event.deployment.payload.version }}
         DEPLOYMENT_ID: ${{ github.event.deployment.id }}
-        PUBLISH_STATE: ${{ steps.publish.outputs.state }}
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.TOKEN_REPO_WRITE }}
         previews: 'ant-man,flash'
         script: |
-          const name = context.payload.deployment.payload.name;
-          const version = context.payload.deployment.payload.version;
+          const name = process.env.NAME;
+          const version = process.env.VERSION;
           const npmUrl = `https://www.npmjs.com/package/${name}/v/${version}`;
 
-          const state = process.env.PUBLISH_STATE === 'done' ? 'success' : 'failure';
+          const state = '${{ steps.publish.outputs.state }}' === 'done' ? 'success' : 'failure';
 
           const { data: deploymentStatus } = github.repos.createDeploymentStatus({
             owner: context.repo.owner,
             repo: context.repo.repo,
             deployment_id: process.env.DEPLOYMENT_ID,
             environment_url: npmUrl,
-            description: `Deployed ${name}@${version} on npm`,
+            description: `Published ${name}@${version} on npm`,
             auto_inactive: false,
             state,
           });

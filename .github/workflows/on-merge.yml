@@ -1,7 +1,7 @@
 name: On merge
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [main]
     types: [closed]
 
@@ -167,28 +167,6 @@ jobs:
 
           console.log(`::set-output name=package::${packageLabels[0].name}`)
 
-    - uses: actions/checkout@v2
-      with:
-        ref: main
-        token: ${{ secrets.TOKEN_REPO_WRITE }}
-
-    - name: Git config
-      run: |
-        git config user.name "Github actions"
-        git config user.email "github-actions@fp51.dev"
-
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14'
-
-    - name: Install
-      env:
-        PACKAGE: ${{ steps.extract-labels.outputs.package }}
-      run: |
-        cd $PACKAGE
-
-        npm ci
-
     - name: Bump classic version
       if: steps.extract-labels.outputs.versionBump != 'beta'
       env:
@@ -198,13 +176,16 @@ jobs:
       run: |
         cd $PACKAGE
 
-        npm --no-git-tag-version version $BUMP_TYPE
-
         VERSION=$(cat package.json | jq -r '.version')
 
         npm add --no-save remark-cli@^6.0.0 @jarrodldavis/remark-changelog-version-bump@^0.1.1
 
         ./node_modules/.bin/remark CHANGELOG.md -o --use @jarrodldavis/changelog-version-bump=version:\"$VERSION\"
+
+        git add package.json CHANGELOG.md
+        git commit -m "$VERSION"
+
+        git tag "v$VERSION"
 
     - name: Bumb beta version
       if: steps.extract-labels.outputs.versionBump == 'beta'
@@ -214,13 +195,16 @@ jobs:
       run: |
         cd $PACKAGE
 
-        npm --no-git-tag-version version prerelease --preid=beta
+        npm version prerelease --preid=beta
 
     - name: Push on main
       id: push
       env:
         PACKAGE: ${{ steps.extract-labels.outputs.package }}
       run: |
+        git push
+        git push --tags
+
         cd $PACKAGE
 
         VERSION=$(cat package.json | jq -r '.version')
@@ -228,55 +212,6 @@ jobs:
 
         NAME=$(cat package.json | jq -r '.name')
         echo "::set-output name=name::$NAME"
-
-        git add package.json CHANGELOG.md
-        git commit -m "$NAME@$VERSION"
-
-        git tag "$NAME@$VERSION"
-
-        git push
-        git push --tags
-
-        COMMIT_ID=$(git rev-parse HEAD)
-        echo "::set-output name=ref::$COMMIT_ID"
-
-    - name: Create deployment
-      id: deployment
-      uses: actions/github-script@v2
-      env:
-        REF: ${{ steps.push.outputs.ref }}
-        VERSION: ${{ steps.push.outputs.VERSION }}
-        NAME: ${{ steps.push.outputs.NAME }}
-        VERSION_BUMP: ${{ steps.extract-labels.outputs.versionBump }}
-        DIRECTORY: ${{ steps.extract-labels.outputs.package }}
-      with:
-        github-token: ${{ secrets.TOKEN_REPO_WRITE }}
-        previews: 'ant-man-preview,flash-preview'
-        script: |
-          const ref = process.env.REF;
-          const name = process.env.NAME;
-          const version = process.env.VERSION;
-          const directory = process.env.DIRECTORY;
-
-          const npmTag = process.env.VERSION_BUMP === 'beta' ? 'beta' : 'latest';
-
-          const { data: deployment } = await github.repos.createDeployment({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: `${name}@${version}`,
-            environment: 'npm',
-            auto_merge: false,
-            required_contexts: [],
-            payload: {
-              version,
-              name,
-              directory,
-              npmTag,
-              ref,
-            },
-            description: `Deploy ${name}@${version} on npm`,
-            production_environment: true,
-          });
 
     - name: Extract release changelog
       id: extract-changelog
@@ -295,6 +230,32 @@ jobs:
         echo VERSION_PART=$VERSION_PART
 
         echo "::set-output name=version-part::$VERSION_PART"
+
+    - name: Create tarball
+      env:
+        PACKAGE: ${{ steps.extract-labels.outputs.package }}
+        VERSION_BUMP: ${{ steps.extract-version-label.outputs.versionBump }}
+        VERSION: ${{ steps.push.outputs.version }}
+      run: |
+        cd $PACKAGE
+
+        PACKAGE=$(npm pack)
+
+        mv $PACKAGE package.tgz
+
+        NPM_TAG=$([ $VERSION_BUMP == "beta" ] && echo 'beta' || echo 'latest')
+
+        echo $NPM_TAG > npm-tag
+        echo v$VERSION > ref
+
+    - name: Publish artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: package
+        path: |
+          ${{ steps.packages.outputs.packages }}/package.tgz
+          ${{ steps.packages.outputs.packages }}/ref
+          ${{ steps.packages.outputs.packages }}/npm-tag
 
     - name: Create Release
       if: steps.extract-labels.outputs.versionBump != 'beta'

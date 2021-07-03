@@ -18,15 +18,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '14'
-
-    - name: Cache npm cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: v1-npm-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          v1-npm-${{ github.ref }}-
-          v1-npm-
+        cache: npm
 
     - name: List all packages
       id: all-packages
